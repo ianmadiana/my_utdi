@@ -12,8 +12,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   // Controller untuk form input username dan password
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _usernameC = TextEditingController();
+  final TextEditingController _passwordC = TextEditingController();
 
   // Variabel untuk menentukan apakah password sedang ditampilkan atau tidak
   bool _obscureText = true;
@@ -27,14 +27,13 @@ class _LoginPageState extends State<LoginPage> {
 
   // Fungsi untuk memeriksa apakah username dan password valid
   bool _isLoginValid() {
-    // Implementasi validasi
-    String validUsername = "a";
-    String validPassword = "a";
-    return _usernameController.text == validUsername &&
-        _passwordController.text == validPassword;
+    // value variabel username dan password
+    String validUsername = "tes";
+    String validPassword = "123456";
+    return _usernameC.text == validUsername && _passwordC.text == validPassword;
   }
 
-  // Fungsi untuk menavigasi ke halaman menu utama setelah login berhasil
+  // Fungsi untuk menavigasi ke halaman HomePage() setelah login berhasil
   void _navigateToMainMenu() {
     Navigator.pushReplacement(
       context,
@@ -58,19 +57,22 @@ class _LoginPageState extends State<LoginPage> {
           elevation: 0,
           backgroundColor: Colors.white,
         ),
+        // widget listview agar halaman bisa di-scroll
         body: ListView(
           children: [
+            // widget kolom untuk membungkus gambar dan input text email dan password
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
+                  // widget gambar
                   child: SizedBox(
                     height: 300,
-                    // width: 300,
                     child: Lottie.asset("assets/lotties/login2.json"),
                   ),
                 ),
+                // widget container untuk membungkus widget text "Login"
                 Container(
                   padding: const EdgeInsets.all(20),
                   child: const Text(
@@ -80,8 +82,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20),
+                  // widget textfield untuk memasukkan input email
                   child: TextField(
-                    controller: _usernameController,
+                    controller: _usernameC,
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     decoration: const InputDecoration(
@@ -95,8 +98,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20),
+                  // widget textfield untuk memasukkan input password
                   child: TextField(
-                    controller: _passwordController,
+                    // controller input form email dan password
+                    controller: _passwordC,
                     obscureText: _obscureText,
                     decoration: InputDecoration(
                       contentPadding:
@@ -114,6 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
+                // widget text untuk 'forgot password'
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: Row(
@@ -123,7 +129,6 @@ class _LoginPageState extends State<LoginPage> {
                         'Forgot Password?',
                         style: TextStyle(
                           color: Colors.blue[900],
-                          // fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -135,10 +140,12 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.all(20),
               child: ElevatedButton(
+                // ketika user valid akan dinavigasikan ke halaman berikutnya
                 onPressed: () {
                   if (_isLoginValid()) {
                     _navigateToMainMenu();
                   } else {
+                    // widget pop up ketika user salah memasukkan username atau password
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
@@ -165,6 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(fontFamily: 'ConcertOne', fontSize: 15)),
               ),
             ),
+            // widget row untuk text 'new user' dan 'register'
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

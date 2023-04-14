@@ -10,6 +10,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State {
+
+  // List data item berbentuk Map string dan dynamic
   List<Map<String, dynamic>> items = [
     {
       'title': 'Matakuliah Ditawarkan',
@@ -43,13 +45,17 @@ class _HomePageState extends State {
       appBar: AppBar(
         title: const Text('Buku Saku UTDI'),
       ),
+      // Listview agar halaman bisa di-scroll jika terdapat item baru
       body: ListView(
         children: [
+          // widget kartu mahasiswa diisi data menggunakan constructor
           KartuMhs(
-              name: 'Ian Madiana',
-              nim: 205410002,
+              name: 'Ian XXXX',
+              nim: 20549999,
               prodi: 'Informatika',
               status: 'Aktif'),
+          // widget gridview untuk membuat daftar list kotak berbentuk grid lebih dari 1
+          // menggunakan builder agar list dibuat otomatis sesuai jumlah data
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -57,6 +63,7 @@ class _HomePageState extends State {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
             ),
+            // builder 
             itemBuilder: (context, index) => InkWell(
               onTap: () {
                 Navigator.push(

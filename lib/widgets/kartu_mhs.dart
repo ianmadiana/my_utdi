@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'item_ktm.dart';
+
 class KartuMhs extends StatelessWidget {
   KartuMhs(
       {super.key,
@@ -27,43 +29,10 @@ class KartuMhs extends StatelessWidget {
             color: Colors.yellow,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 100,
-                  width: 100,
-                  child: Image.asset("assets/images/logo_utdi.png"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text("Nama Mahasiswa: "),
-                      Text(name,
-                          style: const TextStyle(fontWeight: FontWeight.bold)),
-                      const Text("NIM: "),
-                      Text(nim.toString(),
-                          style: const TextStyle(fontWeight: FontWeight.bold)),
-                      const Text("Fakultas / Program Studi: : "),
-                      Text(prodi,
-                          style: const TextStyle(fontWeight: FontWeight.bold)),
-                      const Text("Status Kemahasiswaan:  "),
-                      Text(status,
-                          style: const TextStyle(fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+          child: ItemKtm(name: name, nim: nim, prodi: prodi, status: status),
         ),
       ),
     );
   }
 }
+
