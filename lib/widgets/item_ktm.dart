@@ -19,6 +19,7 @@ class ItemKtm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20),
+      // widget Row menampilkan widget secara horizontal.
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
