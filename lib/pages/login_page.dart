@@ -50,6 +50,7 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           centerTitle: true,
+          // widget text untuk menampilkan teks
           title: const Text(
             "My UTDI",
             style: TextStyle(color: Colors.black),
