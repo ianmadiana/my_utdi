@@ -5,16 +5,17 @@ import '../widgets/box_item.dart';
 import '../widgets/kartu_mhs.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State createState() => _HomePageState();
 }
 
 class _HomePageState extends State {
-
-  // List data item berbentuk Map string dan dynamic
+  // List data item berbentuk Map
   List<Map<String, dynamic>> items = [
     {
-      'title': 'Matakuliah Ditawarkan',
+      'title': 'Informasi Matakuliah Ditawarkan',
       'img': 'assets/lotties/learning.json',
       'desc':
           'Informasi Matakuliah Ditawarkan berisi seluruh matakuliah yang ditawarkan pada semester aktif. Dari seluruh matakuliah yang terdapat pada daftar, setiap matakuliah mempunyai aturan tersendiri bergantung pada program studi, kurikulum, dan aturan akademik lainnya. Untuk lebih jelasnya, anda dapat melihat detil kelas.'
@@ -37,6 +38,17 @@ class _HomePageState extends State {
       'desc':
           'Transkrip Nilai berisi informasi nilai hasil studi mahasiswa mulai dari semester awal sampai dengan semester terakhir mahasiswa. Transkrip ini dapat dicetak dalam bentuk transkrip satu halaman.'
     },
+    {
+      'title': 'Info Aplikasi',
+      'img': 'assets/lotties/info.json',
+      'desc': 'Ini adalah super app kampus untuk mahasiswa'
+    },
+    {
+      'title': 'Profil',
+      'img': 'assets/lotties/profile.json',
+      'desc':
+          'Profil Mahasiswa berisi data pribadi pengguna portal akademik. Apabila terdapat kesalahan data, anda dapat menghubungi bagian akademik untuk memperbaikinya.'
+    },
   ];
 
   @override
@@ -57,15 +69,22 @@ class _HomePageState extends State {
           // widget gridview untuk membuat daftar list kotak berbentuk grid lebih dari 1
           // menggunakan builder agar list dibuat otomatis sesuai jumlah data
           GridView.builder(
+            // item di dalam gridview agar tidak di-scroll pada widget listview
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
+            // jumlah grid sesuai jumlah item yang ada pada list data
             itemCount: items.length,
+            // jumlah grid setiap baris ditentukan secara fixed
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              // perbandingan rasio antar grid
+              childAspectRatio: 1 / 1.2,
+              // grid berjumlah 2 setiap baris
               crossAxisCount: 2,
             ),
-            // builder 
+            // gridview membutuhkan item builder/item apa yang akan di-build
             itemBuilder: (context, index) => InkWell(
               onTap: () {
+                // widget untuk berpindah halaman ke DetailPage ketika gridview ditekan
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -78,8 +97,8 @@ class _HomePageState extends State {
                 );
               },
               child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding: const EdgeInsets.all(10),
+                // widget box item untuk menampilkan nama dan gambar menu pilihan
                 child: BoxItem(
                   titleBox: items[index]['title'],
                   img: items[index]['img'],
@@ -93,6 +112,7 @@ class _HomePageState extends State {
   }
 }
 
+// class DetailPage berfungsi untuk menampilkan detail menu
 class DetailPage extends StatelessWidget {
   DetailPage(
       {Key? key,
@@ -118,6 +138,7 @@ class DetailPage extends StatelessWidget {
             SizedBox(
               height: 250,
               width: 250,
+              // image menggunakan library Lottie
               child: Lottie.asset(item['img']),
             ),
             Padding(

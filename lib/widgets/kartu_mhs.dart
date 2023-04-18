@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'item_ktm.dart';
 
+// class layout untuk kartu mahasiswa
 class KartuMhs extends StatelessWidget {
   KartuMhs(
       {super.key,

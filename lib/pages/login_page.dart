@@ -28,8 +28,8 @@ class _LoginPageState extends State<LoginPage> {
   // Fungsi untuk memeriksa apakah username dan password valid
   bool _isLoginValid() {
     // value variabel username dan password
-    String validUsername = "tes";
-    String validPassword = "123456";
+    String validUsername = "admin";
+    String validPassword = "admin";
     return _usernameC.text == validUsername && _passwordC.text == validPassword;
   }
 

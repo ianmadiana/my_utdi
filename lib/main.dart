@@ -13,8 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      // nama aplikasi
       title: "My UTDI",
+      // menghilangkan tanda debug di aplikasi
       debugShowCheckedModeBanner: false,
+      // widget SafeArea digunakan untuk menentukan area yang aman dan tidak terhalang oleh elemen lain di dalam aplikasi
       home: SafeArea(child: LoginPage()),
     );
   }

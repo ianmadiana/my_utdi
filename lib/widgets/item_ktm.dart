@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// class kartu mahasiswa
 class ItemKtm extends StatelessWidget {
   const ItemKtm({
     super.key,
