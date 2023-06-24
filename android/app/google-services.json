@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "409182604768",
+    "project_id": "framework-mobile-uas",
+    "storage_bucket": "framework-mobile-uas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409182604768:android:e1a184f2153c99b626ef85",
+        "android_client_info": {
+          "package_name": "com.example.my_utdi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409182604768-k7jad1fhite715h2ih4b1fkodbocv3vg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoGdJQXVRAVsOxZAdBJSwC2QE_sLCzhQU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409182604768-k7jad1fhite715h2ih4b1fkodbocv3vg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

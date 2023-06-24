@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 // class untuk menampilka item menu
 class BoxItem extends StatelessWidget {
@@ -16,28 +15,28 @@ class BoxItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.blue,
+        // color: Colors.blue,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(
-              height: 50,
+              height: 70,
+              child: Center(child: Image.asset(img)),
+            ),
+            SizedBox(
+              height: 40,
               child: Center(
                 child: Text(
                   titleBox,
-                  maxLines: 4,
+                  // maxLines: 4,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 100,
-              child: Lottie.asset(img),
             )
           ],
         ),

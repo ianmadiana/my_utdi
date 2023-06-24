@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:my_utdi/pages/list_mahasiswa.dart';
 
 import '../widgets/box_item.dart';
 import '../widgets/kartu_mhs.dart';
@@ -16,39 +16,39 @@ class _HomePageState extends State {
   List<Map<String, dynamic>> items = [
     {
       'title': 'Informasi Matakuliah Ditawarkan',
-      'img': 'assets/lotties/learning.json',
+      'img': 'assets/icons/book.png',
       'desc':
           'Informasi Matakuliah Ditawarkan berisi seluruh matakuliah yang ditawarkan pada semester aktif. Dari seluruh matakuliah yang terdapat pada daftar, setiap matakuliah mempunyai aturan tersendiri bergantung pada program studi, kurikulum, dan aturan akademik lainnya. Untuk lebih jelasnya, anda dapat melihat detil kelas.'
     },
     {
       'title': 'Presensi',
-      'img': 'assets/lotties/checklist.json',
+      'img': 'assets/icons/attendance.png',
       'desc':
           'Rekap Presensi merupakan fasilitas yang dapat digunakan untuk melihat hasil rekap presensi mahasiswa persemester. Selain dapat dilihat secara online, rekap presensi ini juga dapat dicetak.'
     },
     {
       'title': 'Kartu Rencana Studi',
-      'img': 'assets/lotties/list.json',
+      'img': 'assets/icons/checklist.png',
       'desc':
           'Kartu Rencana Studi merupakan fasilitas pengisian KRS secara online. Fasilitas KRS Online ini hanya dapat digunakan pada saat masa KRS atau masa revisi KRS. Mahasiswa dapat memilih matakuliah yang ingin diambil bersesuaian dengan jatah sks yang dimiliki dan matakuliah yang ditawarkan. Setelah melakukan pengisian KRS mahasiswa dapat mencetak KRS tersebut agar dapat ditandatangani oleh dosen pembimbingnya masing-masing.'
     },
     {
       'title': 'Transkrip Nilai',
-      'img': 'assets/lotties/graph.json',
+      'img': 'assets/icons/exam.png',
       'desc':
           'Transkrip Nilai berisi informasi nilai hasil studi mahasiswa mulai dari semester awal sampai dengan semester terakhir mahasiswa. Transkrip ini dapat dicetak dalam bentuk transkrip satu halaman.'
     },
-    {
-      'title': 'Info Aplikasi',
-      'img': 'assets/lotties/info.json',
-      'desc': 'Ini adalah super app kampus untuk mahasiswa'
-    },
-    {
-      'title': 'Profil',
-      'img': 'assets/lotties/profile.json',
-      'desc':
-          'Profil Mahasiswa berisi data pribadi pengguna portal akademik. Apabila terdapat kesalahan data, anda dapat menghubungi bagian akademik untuk memperbaikinya.'
-    },
+    // {
+    //   'title': 'Info Aplikasi',
+    //   'img': 'assets/icons/info.png',
+    //   'desc': 'Ini adalah super app kampus untuk mahasiswa'
+    // },
+    // {
+    //   'title': 'Profil',
+    //   'img': 'assets/icons/user.png',
+    //   'desc':
+    //       'Profil Mahasiswa berisi data pribadi pengguna portal akademik. Apabila terdapat kesalahan data, anda dapat menghubungi bagian akademik untuk memperbaikinya.'
+    // },
   ];
 
   @override
@@ -56,6 +56,7 @@ class _HomePageState extends State {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Buku Saku UTDI'),
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.logout))],
       ),
       // Listview agar halaman bisa di-scroll jika terdapat item baru
       body: ListView(
@@ -66,9 +67,30 @@ class _HomePageState extends State {
               nim: 20549999,
               prodi: 'Informatika',
               status: 'Aktif'),
+
+          Card(
+            elevation: 7,
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ListMahasiswa()),
+                );
+              },
+              child: ListTile(
+                leading: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset('assets/icons/user.png'),
+                ),
+                title: Text("Daftar Mahasiswa"),
+                trailing: Icon(Icons.arrow_circle_right_rounded),
+              ),
+            ),
+          ),
           // widget gridview untuk membuat daftar list kotak berbentuk grid lebih dari 1
           // menggunakan builder agar list dibuat otomatis sesuai jumlah data
           GridView.builder(
+            padding: EdgeInsets.all(10),
             // item di dalam gridview agar tidak di-scroll pada widget listview
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -82,26 +104,30 @@ class _HomePageState extends State {
               crossAxisCount: 2,
             ),
             // gridview membutuhkan item builder/item apa yang akan di-build
-            itemBuilder: (context, index) => InkWell(
-              onTap: () {
-                // widget untuk berpindah halaman ke DetailPage ketika gridview ditekan
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetailPage(
-                      item: items[index],
-                      desc: items[index]['desc'],
-                      imageDetail: items[index]['img'],
+            itemBuilder: (context, index) => Card(
+              elevation: 7,
+              child: InkWell(
+                splashFactory: InkSparkle.splashFactory,
+                onTap: () {
+                  // widget untuk berpindah halaman ke DetailPage ketika gridview ditekan
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailPage(
+                        item: items[index],
+                        desc: items[index]['desc'],
+                        imageDetail: items[index]['img'],
+                      ),
                     ),
+                  );
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  // widget box item untuk menampilkan nama dan gambar menu pilihan
+                  child: BoxItem(
+                    titleBox: items[index]['title'],
+                    img: items[index]['img'],
                   ),
-                );
-              },
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                // widget box item untuk menampilkan nama dan gambar menu pilihan
-                child: BoxItem(
-                  titleBox: items[index]['title'],
-                  img: items[index]['img'],
                 ),
               ),
             ),
@@ -136,10 +162,13 @@ class DetailPage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 250,
+              height: 100,
               width: 250,
               // image menggunakan library Lottie
-              child: Lottie.asset(item['img']),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset(item['img'], scale: 3),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(20),

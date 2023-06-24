@@ -24,8 +24,8 @@ class KartuMhs extends StatelessWidget {
         elevation: 7,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Container(
-          height: 200,
-          width: 200,
+          height: 170,
+          // width: 10,
           decoration: BoxDecoration(
             color: Colors.yellow,
             borderRadius: BorderRadius.circular(20),
@@ -36,4 +36,3 @@ class KartuMhs extends StatelessWidget {
     );
   }
 }
-
